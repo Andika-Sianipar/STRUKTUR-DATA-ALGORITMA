@@ -66,7 +66,7 @@ void LinkedList::deleteFromHead() {
 	delete tmp;
 }
 
-void LinkedList::deletetail() {
+void LinkedList::deleteFromTail() {
 	if(head==tail){
 	   delete tail;
 	   head = tail = NULL;
