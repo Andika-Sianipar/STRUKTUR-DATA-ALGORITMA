@@ -40,7 +40,7 @@ void LinkedList::insertToTail(int input) {
 }
 
 void LinkedList::insetAfter(int input, int data) {	
-	Node *newNode = new Node();
+    Node *newNode = new Node();
     newNode->value = input;
     
     Node *tmp = head;
@@ -54,3 +54,52 @@ void LinkedList::insetAfter(int input, int data) {
     }
     cout << "Node dengan data" << data << " Tidak Ditemukan." << endl;
 }
+
+void LinkedList::deleteFromHead() {
+	Node *tmp = head;
+	if(head == tail){
+	    head = tail = NULL;
+	}else{
+	    head = head->next;
+	}
+	tmp->next = NULL;
+	delete tmp;
+}
+
+void LinkedList::deletetail() {
+	if(head==tail){
+	   delete tail;
+	   head = tail = NULL;
+	}else{
+	   Node*tmp = head;
+	   while (tmp->next!=tail){
+		  tmp = tmp->next;
+	}
+	  tail=tmp;
+		delete tmp->next;
+		tmp->next = NULL;
+	}
+}
+		
+void LinkedList::deleteByValue(int input) {
+	Node *delNode;
+	Node *tmp = head;
+	
+	if (input == head->value)
+	{
+		head = head->next;
+		delete tmp;
+		
+	}
+	else{
+		
+		while (tmp->value != input)
+		{
+		    tmp = tmp->next;
+		}
+		delNode = tmp->next;
+		tmp->next     = delNode->next;
+		delNode = NULL;
+		delete delNode;
+	}
+}		
