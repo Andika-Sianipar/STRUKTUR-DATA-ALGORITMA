@@ -20,6 +20,7 @@ class BinaryTree{
 		Node *insertNodeRecursive(Node*, int);
 		
 		void deleteNode(int);
+		Node *deleteNodeRecursive(Node*, int);
 		
 		void findMin();
 		Node *findMinRecursive(Node*);
