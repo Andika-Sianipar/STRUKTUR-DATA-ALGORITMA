@@ -21,6 +21,40 @@ Node *BinaryTree::insertNodeRecursive(Node *currentRoot, int insertValue){
 	}
 }
 
+void BinaryTree::deleteNode(int value) {
+    root = deleteNodeRecursive(root, value);
+}
+
+Node* BinaryTree::deleteNodeRecursive(Node* node, int value) {
+    if (node == NULL) {
+        return node;
+    }
+    else if (value < node->val) {
+        node->left = deleteNodeRecursive(node->left, value);
+    }
+    else if (value > node->val) {
+        node->right = deleteNodeRecursive(node->right, value);
+    }
+    else {
+        if (node->left == NULL) {
+            Node* temp = node->right;
+            delete node;
+            return temp;
+        }
+        else if (node->right == NULL) {
+            Node* temp = node->left;
+            delete node;
+            return temp;
+        }
+        else {
+            Node* successor = findMinRecursive(node->right);
+            node->val = successor->val;
+            node->right = deleteNodeRecursive(node->right, successor->val);
+        }
+    }
+    return node;
+}
+
 void BinaryTree::findMin(){
 	minVal = INT_MAX;
     findMinRecursive(root);
@@ -55,10 +89,10 @@ Node *BinaryTree::findMaxRecursive(Node* currentRoot) {
 
 void BinaryTree::searchNode(int insertVal) {
     Node* result = searchNodeRecursive(root, insertVal);
-		if (result == NULL) {
-            cout << "Node Tidak Ditemukan." << endl;
+		if (result != NULL) {
+			cout << "Node Ditemukan." << endl;
         } else {
-            cout << "Node Ditemukan." << endl;
+            cout << "Node Tidak Ditemukan." << endl;
         }
     }
 	
@@ -108,4 +142,3 @@ Node *BinaryTree::postOrderRecursive(Node *currentRoot){
 		cout << currentRoot->val<<",";
 	}
 }
-
