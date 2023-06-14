@@ -15,6 +15,8 @@ int main(int argc, char** argv) {
 	bin.insertNode(2);
 	bin.insertNode(20);
 	bin.insertNode(25);
+
+	bin.deleteNode(25);
 	
 	bin.preOrder();
 	cout<<endl;
@@ -25,12 +27,12 @@ int main(int argc, char** argv) {
 	bin.postOrder();
 	cout<<endl;
 	
-	bin.searchNode(20);
+	bin.searchNode(15);
 	bin.searchNode(30);
 
 	bin.findMax();
 	bin.findMin();
 
-	
+
 	return 0;
 }
